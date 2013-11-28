@@ -30,7 +30,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "nginx"
     chef.add_recipe "redis"
     chef.add_recipe "nodejs"
-    #chef.add_recipe "lyssa"
+    # The magic recipe
+    chef.add_recipe "lyssa"
   end
 
   # Create a forwarded port mapping which allows access to a specific port
@@ -62,8 +63,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "../cobarClient", "/vagrantClient"
-  config.vm.synced_folder "../cobarAPI", "/vagrantAPI"
+  config.vm.synced_folder "../cobarClient", "/cobarClient"
+  config.vm.synced_folder "../cobarAPI", "/cobarAPI"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.

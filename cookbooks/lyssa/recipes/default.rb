@@ -1,3 +1,31 @@
+
+bash "build_client" do
+  user "root"
+  cwd "/cobarClient"
+  code <<-EOH
+  npm install -g coffee-script
+  npm install -g jade
+  make build
+  EOH
+end
+
+bash "build_api_server" do
+  user "root"
+  cwd "/cobarAPI"
+  code <<-EOH
+  make build
+  EOH
+end
+
+bash "run_api_server" do
+  user "root"
+  cwd "/cobarAPI"
+  code <<-EOH
+  make run
+  EOH
+end
+
+=begin
 bash "import_database" do
   user "root"
   cwd "/tmp"
@@ -50,3 +78,4 @@ bash "start_app" do
   sudo forever start --watch -l forever.log -o /var/log/lyssa-output.log -e /var/log/lyssa-error.log server.js
   EOH
 end
+=end
